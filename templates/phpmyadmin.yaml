@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.phpmyadmin.name }}
+  labels:
+    app: {{ .Values.phpmyadmin.app }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.phpmyadmin.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.phpmyadmin.app }}
+    spec:
+      containers:
+      - name: {{ .Values.phpmyadmin.container.name }}
+        image: {{ .Values.phpmyadmin.container.image }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: password
+        - name: PMA_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: mysql-configmap
+              key: database_url

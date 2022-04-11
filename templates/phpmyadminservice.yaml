@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.phpmyadminservice.name }}
+spec:
+  selector:
+    app: {{ .Values.phpmyadminservice.app }}
+  type: {{ .Values.phpmyadminservice.type }}
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000

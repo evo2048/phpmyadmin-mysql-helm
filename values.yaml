@@ -1,0 +1,27 @@
+mysql:
+  name: mysql-db
+  app: mysql
+  container: 
+    name: mysql
+    image: mysql
+mysqlservice:
+  name: mysql-service
+  app: mysql
+phpmyadmin:
+  name: phpmyadmin-web
+  app: php-my-admin
+  container: 
+    name: php-my-admin
+    image: phpmyadmin
+phpmyadminservice:
+  name: php-my-admin-service
+  app: php-my-admin
+  type: LoadBalancer
+configmap:
+  name: mysql-configmap
+  database_url: mysql-service
+secret:
+  name: mysql-secret
+  type: Opaque
+  username: BASE64Username
+  password: BASE64Password
