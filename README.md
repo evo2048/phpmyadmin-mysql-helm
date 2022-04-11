@@ -1,1 +1,1 @@
-# phpmyadmin-mysql-helm
+# PhpMyAdmin and MySQL template
