@@ -1,0 +1,9 @@
+mysql:
+  name: mysql-db
+  app: mysql
+  container: 
+    name: mysql
+    image: mysql
+mysqlservice:
+  name: mysql-service
+  app: mysql
